@@ -15,7 +15,9 @@ requirements = [
     "bumpversion",
     "twine",
     "setuptools>=42",
-    "wheel"
+    "wheel",
+    "pandas",
+    "multipledispatch"
 ]
 
 
