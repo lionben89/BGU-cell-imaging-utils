@@ -2,7 +2,7 @@ import logging
 import pandas as pd
 import typing
 from multipledispatch import dispatch
-from src.datasets_metadata.dict.datasetes_metadata_abstract_dict import DatasetsMetaDataAbstractDict
+from cell_imaging_utils.datasets_metadata.dict.datasetes_metadata_abstract_dict import DatasetsMetaDataAbstractDict
 
 log = logging.getLogger(__name__)
 

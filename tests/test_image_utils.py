@@ -1,7 +1,7 @@
 import os
 import logging
 
-from src.image.image_utils import ImageUtils
+from cell_imaging_utils.image.image_utils import ImageUtils
 
 log = logging.getLogger(__name__)
 images_save_dir = "{}\\tests\\images".format(os.getcwd())

@@ -1,6 +1,6 @@
 
 import logging
-from src.datasets_metadata.table.datasetes_metadata_abstract_table import DatasetsMetaDataAbstractTable
+from cell_imaging_utils.datasets_metadata.table.datasetes_metadata_abstract_table import DatasetsMetaDataAbstractTable
 import pandas as pd
 import typing
 from multipledispatch import dispatch

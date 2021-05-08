@@ -3,7 +3,7 @@ import typing
 from abc import ABC, abstractmethod
 import pandas as pd
 from multipledispatch import dispatch
-from src.datasets_metadata.datasetes_metadata_abstract import DatasetsMetaDataAbstract
+from cell_imaging_utils.datasets_metadata.datasetes_metadata_abstract import DatasetsMetaDataAbstract
 
 from numpy import number
 

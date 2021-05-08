@@ -1,5 +1,5 @@
-from src.datasets_metadata.table.datasetes_metadata_csv import DatasetMetadataSCV
-from src.datasets_metadata.dict.datasetes_metadata_pickle import DatasetMetadataPickle
+from cell_imaging_utils.datasets_metadata.table.datasetes_metadata_csv import DatasetMetadataSCV
+from cell_imaging_utils.datasets_metadata.dict.datasetes_metadata_pickle import DatasetMetadataPickle
 
 __author__ = "Lion Ben Nedava"
 __email__ = "lionben89@gmail.com"

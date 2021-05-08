@@ -1,9 +1,9 @@
 import os
 import logging
 
-from src.datasets_metadata.table.datasetes_metadata_csv import DatasetMetadataSCV
-from src.datasets_metadata.dict.datasetes_metadata_pickle import DatasetMetadataPickle
-from src.image.image_utils import ImageUtils
+from cell_imaging_utils.datasets_metadata.table.datasetes_metadata_csv import DatasetMetadataSCV
+from cell_imaging_utils.datasets_metadata.dict.datasetes_metadata_pickle import DatasetMetadataPickle
+from cell_imaging_utils.image.image_utils import ImageUtils
 
 log = logging.getLogger(__name__)
 csvs_save_dir = "{}\\tests\\csvs".format(os.getcwd())
