@@ -21,10 +21,14 @@ if not os.path.exists(results_save_dir):
 
 def test_datasets_metadata() -> None:
     image_list_train = DatasetMetadataSCV("{}\\{}\\{}".format(csvs_save_dir,organelle_name,train_file_name),"{}\\{}\\{}".format(csvs_save_dir,organelle_name,train_file_name))
-    seg_image_list_train = DatasetMetadataSCV("{}\\{}\\{}".format(results_save_dir,organelle_name,train_file_name))
+    seg_image_list_train = DatasetMetadataSCV("{}\\{}_{}".format(results_save_dir,organelle_name,train_file_name))
     pickle_best_res = DatasetMetadataPickle("{}\\{}\\{}".format(pickle_save_dir,organelle_name,train_file_name),"{}\\{}".format(pickle_save_dir,pickle_file_name))
     print(pickle_best_res.get_data())
     print(seg_image_list_train.get_data())
+    
+    seg_image_list_train.create_header(["a","b","c"])
+    seg_image_list_train.add_row([1,2,3])
+    seg_image_list_train.create()
     
     return None
 

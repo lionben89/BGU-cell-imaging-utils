@@ -50,7 +50,8 @@ class DatasetsMetaDataAbstractTable(DatasetsMetaDataAbstract):
           return self.data.iloc[row]
      
      def add_row(self,value)->None:
-          self.data.append(value)
+          new_row = pd.DataFrame([value], columns=self.data.columns.to_list()) 
+          self.data = self.data.append(new_row)
      
      @dispatch(int,int,(int,str))
      def set_column(self,column:int,value)->None:
@@ -69,10 +70,10 @@ class DatasetsMetaDataAbstractTable(DatasetsMetaDataAbstract):
           return self.data.iloc[:,column]
      
      def create_header(self,column_names)->None:
-          self.columns = column_names
+          self.data =self.data.reindex(column_names,axis=1)
      
      def add_column(self,column_name:str,value:list)->None:
-          self.data[column_name] = value
+          self.data = self.data[column_name] = value
      
      
      

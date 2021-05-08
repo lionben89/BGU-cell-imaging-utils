@@ -23,6 +23,6 @@ class DatasetMetadataSCV(DatasetsMetaDataAbstractTable):
         if (self.source is not None):
             self.data = pd.read_csv(self.source)
         else:
-             self.data = pd.DataFrame([])
+             self.data = pd.DataFrame([],columns=[])
     def create(self):
         self.data.to_csv(self.destenation)
