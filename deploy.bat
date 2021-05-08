@@ -9,11 +9,9 @@ set /p version=< version_temp
 del version_temp
 bumpversion --current-version %version% %category% ./setup.py
 echo clean dist...
-mkdir .\dist\old
-mv .\dist\* .\dist\old
+rm -r .\dist\*
 echo build dist...
 python setup.py sdist bdist_wheel
-rm .\dist\old -R
 git add .
 git commit -m "bumping version %version% with %category%"
 git push
