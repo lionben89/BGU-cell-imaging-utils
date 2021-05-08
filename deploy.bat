@@ -13,7 +13,7 @@ mkdir .\dist\old
 mv .\dist\* .\dist\old
 echo build dist...
 python setup.py sdist bdist_wheel
-rm .\dist\old\*
+rm .\dist\old -R
 git add .
 git commit -m "bumping version %version% with %category%"
 git push
