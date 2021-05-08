@@ -63,8 +63,8 @@ class ImageUtils:
         return image.get_channel_names()
 
     """
-    Normalize all values between 0 to 1
+    Normalize all values between 0 to max_value
     """
     @staticmethod
-    def normalize(image_ndarray) -> np.ndarray:
-        return image_ndarray/np.max(image_ndarray)
+    def normalize(image_ndarray,max_value=255,dtype=int) -> np.ndarray:
+        return ((image_ndarray/np.max(image_ndarray))*max_value).astype(dtype)

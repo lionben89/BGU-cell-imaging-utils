@@ -26,7 +26,8 @@ def test_image_utils() -> None:
     print(n_image.shape)
     # ImageUtils.imsave(n_image,"{}\\{}\\{}".format(images_save_dir,organelle_name,result_image_file_name))
     test_image = ImageUtils.imread(n_image)
-    ImageUtils.imsave(ImageUtils.image_to_ndarray(test_image),"{}\\{}\\{}".format(images_save_dir,organelle_name,result_image_file_name))
+    test_image = ImageUtils.normalize(test_image)
+    ImageUtils.imsave(test_image,"{}\\{}\\{}".format(images_save_dir,organelle_name,result_image_file_name))
 
     return None
 
