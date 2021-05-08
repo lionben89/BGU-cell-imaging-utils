@@ -9,7 +9,7 @@ set /p version=< version_temp
 del version_temp
 bumpversion --current-version %version% %category% ./setup.py
 echo clean dist...
-rd -r .\dist\
+rm  .\dist\*
 echo build dist...
 python setup.py sdist bdist_wheel
 git add .
