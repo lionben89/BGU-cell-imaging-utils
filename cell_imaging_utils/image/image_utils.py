@@ -66,5 +66,5 @@ class ImageUtils:
     Normalize all values between 0 to max_value
     """
     @staticmethod
-    def normalize(image_ndarray,max_value=255,dtype=int) -> np.ndarray:
+    def normalize(image_ndarray,max_value=255,dtype=np.uint8) -> np.ndarray:
         return ((image_ndarray/np.max(image_ndarray))*max_value).astype(dtype)
