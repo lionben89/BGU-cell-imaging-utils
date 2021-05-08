@@ -67,4 +67,4 @@ class ImageUtils:
     """
     @staticmethod
     def normalize(image_ndarray,max_value=255,dtype=np.uint8) -> np.ndarray:
-        return (image_ndarray*max_value/np.max(image_ndarray)).astype(dtype)
+        return ((image_ndarray/np.max(image_ndarray))*max_value).astype(dtype)
