@@ -49,6 +49,9 @@ class DatasetsMetaDataAbstractTable(DatasetsMetaDataAbstract):
      def get_row(self,row)->list:
           return self.data.iloc[row]
      
+     def add_row(self,value)->None:
+          self.data.append(value)
+     
      @dispatch(int,int,(int,str))
      def set_column(self,column:int,value)->None:
           self.data.iloc[:,column] = value
@@ -64,6 +67,12 @@ class DatasetsMetaDataAbstractTable(DatasetsMetaDataAbstract):
      @dispatch(int,int)
      def get_column(self,column:int)->list:
           return self.data.iloc[:,column]
+     
+     def create_header(self,column_names)->None:
+          self.columns = column_names
+     
+     def add_column(self,column_name:str,value:list)->None:
+          self.data[column_name] = value
      
      
      
