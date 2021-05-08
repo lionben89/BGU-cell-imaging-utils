@@ -3,30 +3,26 @@ import typing
 from abc import ABC, abstractmethod
 import pandas as pd
 from multipledispatch import dispatch
+from src.datasets_metadata.datasetes_metadata_abstract import DatasetsMetaDataAbstract
 
 from numpy import number
 
 log = logging.getLogger(__name__)
 
 """
-DatasetsMetaDataAbstract
+DatasetsMetaDataAbstractTable
 ------------------
 Abstract method th handle datasets metadata
 the data is handled as DataFrame of pandas
+has table shape
 
 
 """
 
-class DatasetMetadataAbstract:
+class DatasetsMetaDataAbstractTable(DatasetsMetaDataAbstract):
      
      def __init__(self,destenation,source=None) -> None:
-         self.source:str = source
-         self.destenation:str = destenation
-         self.data:pd.DataFrame = None
-     
-     @abstractmethod
-     def create(self):
-          pass
+          super().__init__(destenation,source)
      
      def get_shape(self)->tuple:
           return self.data.shape
@@ -68,9 +64,6 @@ class DatasetMetadataAbstract:
      @dispatch(int,int)
      def get_column(self,column:int)->list:
           return self.data.iloc[:,column]
-     
-     def get_table(self)->pd.DataFrame:
-          return self.data
      
      
      
