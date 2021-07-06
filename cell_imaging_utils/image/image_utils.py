@@ -68,3 +68,8 @@ class ImageUtils:
     @staticmethod
     def normalize(image_ndarray,max_value=255,dtype=np.uint8) -> np.ndarray:
         return ((image_ndarray/np.max(image_ndarray))*max_value).astype(dtype)
+    
+    
+    # @staticmethod
+    # def clean_by_slice(image_ndarray:np.ndarray, leave_percentage:float)->np.ndarray:
+    #     sum_values
