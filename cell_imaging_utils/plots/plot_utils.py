@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 
 
 
+
 log = logging.getLogger(__name__)
 
 """
@@ -22,8 +23,12 @@ class PlotsUtils:
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
         plt.title(title)
+        # plt.colorbar()
+        plt.imshow(image, cmap='seismic', interpolation='nearest')
+        # cb = np.linspace(0.0,1.0,20)
+        # cax = plt.axes(cb)
         plt.colorbar()
-        plt.imshow(image, cmap='hot', interpolation='nearest')
         if (save != None):
             plt.savefig(save)
+        plt.show()
 
