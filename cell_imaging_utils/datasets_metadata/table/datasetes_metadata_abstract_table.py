@@ -53,19 +53,19 @@ class DatasetsMetaDataAbstractTable(DatasetsMetaDataAbstract):
           new_row = pd.DataFrame([value], columns=self.data.columns.to_list()) 
           self.data = self.data.append(new_row)
      
-     @dispatch(int,int,(int,str))
+     @dispatch(int,(int,str))
      def set_column(self,column:int,value)->None:
           self.data.iloc[:,column] = value
           
-     @dispatch(int,str,list)
+     @dispatch(str,(int,str,list))
      def set_column(self,column:str,value)->None:
           self.data.loc[:,column] = value
      
-     @dispatch(int,str)
+     @dispatch(str)
      def get_column(self,column:str)->list:
           return self.data.loc[:,column]
      
-     @dispatch(int,int)
+     @dispatch(int)
      def get_column(self,column:int)->list:
           return self.data.iloc[:,column]
      
