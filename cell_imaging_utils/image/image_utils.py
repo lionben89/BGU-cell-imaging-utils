@@ -70,6 +70,39 @@ class ImageUtils:
         temp_image = image_ndarray-np.min(image_ndarray)
         return (((temp_image)/np.max(temp_image))*max_value).astype(dtype)
     
+    @staticmethod
+    def to_shape(a, shape,rescale_z=None):
+        c_, z_, y_, x_ = shape
+        c, z, y, x = a.shape
+        y_pad = (y_-y)
+        x_pad = (x_-x)
+        z_pad = (z_-z)
+        c_pad = (c_-c)
+        if (rescale_z is not None):
+            scaled_a = a[:,::rescale_z,:,:]
+            z_pad = (z_ - scaled_a.shape[1])
+        else:
+            scaled_a = a
+        if (c_pad >= 0):        
+            scaled_a = np.pad(scaled_a,((c_pad//2, c_pad//2 + c_pad%2),(0,0),(0,0),(0,0)),mode = 'constant')
+        else:
+            scaled_a = scaled_a[abs(c_pad//2):scaled_a.shape[0]+(c_pad//2 + c_pad%2),:,:,:]
+            
+        if (z_pad >= 0):        
+            scaled_a = np.pad(scaled_a,((0,0),(z_pad//2, z_pad//2 + z_pad%2),(0,0),(0,0)),mode = 'constant')
+        else:
+            scaled_a = scaled_a[:,abs(z_pad//2):scaled_a.shape[1]+(z_pad//2 + z_pad%2),:,:]
+            
+        if (y_pad >= 0):        
+            scaled_a = np.pad(scaled_a,((0,0),(0,0),(y_pad//2, y_pad//2 + y_pad%2),(0,0)),mode = 'constant')
+        else:
+            scaled_a = scaled_a[:,:,abs(y_pad//2):scaled_a.shape[2]+(y_pad//2 + y_pad%2),:]
+            
+        if (x_pad >= 0):        
+            scaled_a = np.pad(scaled_a,((0,0),(0,0),(0,0),(x_pad//2, x_pad//2 + x_pad%2)),mode = 'constant')
+        else:
+            scaled_a = scaled_a[:,:,:,abs(x_pad//2):scaled_a.shape[3]+(x_pad//2 + x_pad%2)]                        
+        return scaled_a
     
     # @staticmethod
     # def clean_by_slice(image_ndarray:np.ndarray, leave_percentage:float)->np.ndarray:
