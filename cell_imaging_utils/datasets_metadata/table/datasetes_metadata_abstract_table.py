@@ -37,11 +37,11 @@ class DatasetsMetaDataAbstractTable(DatasetsMetaDataAbstract):
      
      @dispatch(int,int)
      def get_item(self,row:int,column:int)->typing.Any:
-          return self.data.iat[row,column]
+          return self.data.iloc[row].iat[column]
 
      @dispatch(int,str)
      def get_item(self,row:int,column:str)->typing.Union[str,number]:
-          return self.data.at[row,column]
+          return self.data.iloc[row].at[column]
      
      def set_row(self,row:int,value:list)->None:
           self.data.iloc[row] = value
