@@ -30,6 +30,9 @@ class DatasetsMetaDataAbstract:
      
      def get_data(self)->pd.DataFrame:
           return self.data
+     
+     def set_data(self, data)->None:
+          self.data = data.reset_index()
     
      
      
