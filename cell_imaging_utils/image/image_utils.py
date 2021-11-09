@@ -71,18 +71,18 @@ class ImageUtils:
         return (((temp_image)/np.max(temp_image))*max_value).astype(dtype)
     
     @staticmethod
-    def to_shape(a, shape,rescale_z=None):
+    def to_shape(image_ndarray, shape,rescale_z=None):
         c_, z_, y_, x_ = shape
-        c, z, y, x = a.shape
+        c, z, y, x = image_ndarray.shape
         y_pad = (y_-y)
         x_pad = (x_-x)
         z_pad = (z_-z)
         c_pad = (c_-c)
         if (rescale_z is not None):
-            scaled_a = a[:,::rescale_z,:,:]
+            scaled_a = image_ndarray[:,::rescale_z,:,:]
             z_pad = (z_ - scaled_a.shape[1])
         else:
-            scaled_a = a
+            scaled_a = image_ndarray
         if (c_pad >= 0):        
             scaled_a = np.pad(scaled_a,((c_pad//2, c_pad//2 + c_pad%2),(0,0),(0,0),(0,0)),mode = 'constant')
         else:

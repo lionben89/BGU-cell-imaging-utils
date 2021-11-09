@@ -29,11 +29,11 @@ class DatasetsMetaDataAbstractTable(DatasetsMetaDataAbstract):
      
      @dispatch(int,int,(int,str,object))
      def set_item(self,row,column,value)->None:
-          self.data.iat[row,column]=value
+          self.data.iloc[row].iat[column]=value
      
      @dispatch(int,str,(int,str,object))
      def set_item(self,row,column,value)->None:
-          self.data.at[row,column]=value
+          self.data.iloc[row].at[column]=value
      
      @dispatch(int,int)
      def get_item(self,row:int,column:int)->typing.Any:
