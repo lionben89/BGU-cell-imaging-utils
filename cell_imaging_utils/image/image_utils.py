@@ -70,8 +70,11 @@ class ImageUtils:
         temp_image = image_ndarray-np.min(image_ndarray)
         return (((temp_image)/np.max(temp_image))*max_value).astype(dtype)
     
+    """
+    to_shape changes the image shape according to the shape recieved
+    """
     @staticmethod
-    def to_shape(image_ndarray, shape,rescale_z=None):
+    def to_shape(image_ndarray, shape,rescale_z=None)  -> np.ndarray:
         c_, z_, y_, x_ = shape
         c, z, y, x = image_ndarray.shape
         y_pad = (y_-y)
@@ -107,3 +110,13 @@ class ImageUtils:
     # @staticmethod
     # def clean_by_slice(image_ndarray:np.ndarray, leave_percentage:float)->np.ndarray:
     #     sum_values
+    
+    """
+    mask_image gets image and mask_template it masks the image according to the template and duplicate it accordingly
+    """
+    @staticmethod
+    def mask_image(image_ndarray,mask_template_ndarray) -> np.ndarray:
+        mask_ndarray = mask_template_ndarray
+        for i in range(int(image_ndarray.shape[0])-1):
+            mask_ndarray = ImageUtils.add_channel(mask_ndarray,mask_template_ndarray)
+        return np.where(mask_ndarray==1.0,image_ndarray,np.zeros(image_ndarray.shape))
