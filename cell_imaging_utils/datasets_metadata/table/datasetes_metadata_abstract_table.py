@@ -29,19 +29,19 @@ class DatasetsMetaDataAbstractTable(DatasetsMetaDataAbstract):
      
      @dispatch(int,int,(int,str,object))
      def set_item(self,row,column,value)->None:
-          self.data.iloc[row].iat[column]=value
+          self.data.iat[row,column]=value
      
      @dispatch(int,str,(int,str,object))
      def set_item(self,row,column,value)->None:
-          self.data.iloc[row].at[column]=value
+          self.data.at[row,column]=value
      
      @dispatch(int,int)
      def get_item(self,row:int,column:int)->typing.Any:
-          return self.data.iloc[row].iat[column]
+          return self.data.iat[row,column]
 
      @dispatch(int,str)
      def get_item(self,row:int,column:str)->typing.Union[str,number]:
-          return self.data.iloc[row].at[column]
+          return self.data.at[row,column]
      
      def set_row(self,row:int,value:list)->None:
           self.data.iloc[row] = value
