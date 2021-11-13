@@ -74,9 +74,12 @@ class ImageUtils:
     to_shape changes the image shape according to the shape recieved
     """
     @staticmethod
-    def to_shape(image_ndarray, shape, rescale_z=None, min_shape=None,modulo=16)  -> np.ndarray:
-        new_shape = np.maximum(shape,min_shape)
-        new_shape = new_shape + (modulo - np.mod(new_shape,modulo))
+    def to_shape(image_ndarray, shape, rescale_z=None, min_shape=None,modulo=None)  -> np.ndarray:
+        new_shape = shape
+        if (min_shape is not None):
+            new_shape = np.maximum(shape,min_shape)
+        if (modulo is not None):
+            new_shape = new_shape + (modulo - np.mod(new_shape,modulo))
         c_, z_, y_, x_ = new_shape
         c, z, y, x = image_ndarray.shape
         y_pad = (y_-y)
