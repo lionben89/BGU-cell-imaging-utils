@@ -112,9 +112,16 @@ class ImageUtils:
             scaled_a = scaled_a[:,:,:,abs(x_pad//2):scaled_a.shape[3]+(x_pad//2 + x_pad%2)]                        
         return scaled_a
     
-    # @staticmethod
-    # def clean_by_slice(image_ndarray:np.ndarray, leave_percentage:float)->np.ndarray:
-    #     sum_values
+    @staticmethod
+    def slice_image(image_ndarray:np.ndarray, x_idx:tuple,y_idx:tuple,z_idx:tuple)->np.ndarray:
+        n_dim = len(image_ndarray.shape)
+        slices = [slice(None)] * n_dim
+        slices[n_dim - 3] = slice(x_idx[0], x_idx[1])
+        slices[n_dim - 2] = slice(y_idx[0], y_idx[1])
+        slices[n_dim - 1] = slice(z_idx[0], z_idx[1])
+        slices = tuple(slices)
+        sliced_image = image_ndarray[slices]
+        return sliced_image
     
     """
     mask_image gets image and mask_template it masks the image according to the template and duplicate it accordingly
