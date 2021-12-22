@@ -1,6 +1,6 @@
 import setuptools
 
-__version__ = '1.5.8'
+__version__ = '1.5.9'
 
 with open("README.md", "r") as fh:
     readme = fh.read()
