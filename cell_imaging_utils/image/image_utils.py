@@ -123,6 +123,16 @@ class ImageUtils:
         sliced_image = image_ndarray[slices]
         return sliced_image
     
+    @staticmethod
+    def slice_image(image_ndarray:np.ndarray, indexes:list)->np.ndarray:
+        n_dim = len(image_ndarray.shape)
+        slices = [slice(None)] * n_dim
+        for i in range(len(indexes)):
+            slices[i] = slice(*indexes[i])
+        slices = tuple(slices)
+        sliced_image = image_ndarray[slices]
+        return sliced_image
+    
     """
     mask_image gets image and mask_template it masks the image according to the template and duplicate it accordingly
     """
