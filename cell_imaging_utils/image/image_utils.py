@@ -128,7 +128,7 @@ class ImageUtils:
         n_dim = len(image_ndarray.shape)
         slices = [slice(None)] * n_dim
         for i in range(len(indexes)):
-            slices[i] = slice(*indexes[i])
+            slices[i] = slice(indexes[i][0],indexes[i][1])
         slices = tuple(slices)
         sliced_image = image_ndarray[slices]
         return sliced_image
