@@ -70,7 +70,7 @@ class DatasetsMetaDataAbstractTable(DatasetsMetaDataAbstract):
           return self.data.iloc[:,column]
      
      def create_header(self,column_names)->None:
-          self.data =self.data.reindex(column_names,axis=1)
+          self.data =self.data.reindex(column_names,axis="columns")
      
      def add_column(self,column_name:str,value:list=None)->None:
           self.data = self.data[column_name] = value

@@ -68,7 +68,7 @@ class ImageUtils:
     @staticmethod
     def normalize(image_ndarray,max_value=255,dtype=np.uint8) -> np.ndarray:
         temp_image = image_ndarray-np.min(image_ndarray)
-        return (((temp_image)/np.max(temp_image))*max_value).astype(dtype)
+        return (((temp_image)/(np.max(temp_image)))*max_value).astype(dtype)
     
     """
     to_shape changes the image shape according to the shape recieved
