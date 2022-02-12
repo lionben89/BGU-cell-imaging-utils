@@ -51,7 +51,7 @@ class DatasetsMetaDataAbstractTable(DatasetsMetaDataAbstract):
      
      def add_row(self,value)->None:
           new_row = pd.DataFrame([value], columns=self.data.columns.to_list()) 
-          self.data = self.data.append(new_row)
+          self.data = self.data.concat(new_row)
      
      @dispatch(int,(int,str))
      def set_column(self,column:int,value)->None:
