@@ -142,3 +142,11 @@ class ImageUtils:
         for i in range(int(image_ndarray.shape[0])-1):
             mask_ndarray = ImageUtils.add_channel(mask_ndarray,mask_template_ndarray)
         return np.where(mask_ndarray==1.0,image_ndarray,np.zeros(image_ndarray.shape))
+    
+    """
+    project 3d image into pixelwise maximium in 2d
+    """
+    @staticmethod
+    def project_to_2d(image_ndarray,axis=1) -> np.ndarray:
+        projection_ndarray = np.amax(image_ndarray,axis=axis)
+        return projection_ndarray
