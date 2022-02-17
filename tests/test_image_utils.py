@@ -2,15 +2,16 @@ import os
 import logging
 
 from cell_imaging_utils.image.image_utils import ImageUtils
+import numpy as np
 
 log = logging.getLogger(__name__)
 images_save_dir = "{}\\tests\\images".format(os.getcwd())
 results_save_dir = "{}\\tests\\results".format(os.getcwd())
 
 
-organelle_name = "Mitochondria"
-image_file_name = "0_signal.tif"
-result_image_file_name = "test_0_signal.tif"
+organelle_name = "Endoplasmic-reticulum"
+image_file_name = "Endoplasmic-reticulum_4993.tiff"
+result_image_file_name = "test_sliced.tiff"
 # seg_image_file_name = "image_list_test.csv"
 
 if not os.path.exists(results_save_dir):
@@ -27,7 +28,11 @@ def test_image_utils() -> None:
     # ImageUtils.imsave(n_image,"{}\\{}\\{}".format(images_save_dir,organelle_name,result_image_file_name))
     # test_image = ImageUtils.imread(n_image)
     # test_image = ImageUtils.normalize(test_image)
-    test_image = ImageUtils.project_to_2d(image_ndarray)
+    mask_template = ImageUtils.get_channel(image_ndarray,5)
+    test_image = ImageUtils.crop_edges(image_ndarray,mask_template)
+    
+    # test_image = ImageUtils.project_to_2d(image_ndarray)
+    # indexes
     ImageUtils.imsave(test_image,"{}\\{}\\{}".format(images_save_dir,organelle_name,result_image_file_name))
 
     return None

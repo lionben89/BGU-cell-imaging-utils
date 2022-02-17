@@ -1,3 +1,4 @@
+from os import stat
 import aicsimageio
 import numpy as np
 import logging
@@ -150,3 +151,15 @@ class ImageUtils:
     def project_to_2d(image_ndarray,axis=1) -> np.ndarray:
         projection_ndarray = np.amax(image_ndarray,axis=axis)
         return projection_ndarray
+    
+    @staticmethod
+    def crop_edges(image_ndarray,mask_template):
+        # mask_temp = ImageUtils.get_channel(image_ndarray,5)
+        min_max_indecies = [(0,image_ndarray.shape[0])]
+        indecies= np.where(mask_template)
+        for index in indecies[1:]:
+            min_index = min(index)
+            max_index = max(index)
+            min_max_indecies.append((min_index,max_index))
+        cropped_image = ImageUtils.slice_image(image_ndarray,min_max_indecies)
+        return cropped_image
