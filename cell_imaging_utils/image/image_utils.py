@@ -68,8 +68,23 @@ class ImageUtils:
     """
     @staticmethod
     def normalize(image_ndarray,max_value=255,dtype=np.uint8) -> np.ndarray:
+        image_ndarray = image_ndarray.astype(np.float64)
+        max_var = np.max(image_ndarray!=np.inf)
+        image_ndarray = np.where(image_ndarray==np.inf,max_var,image_ndarray)
         temp_image = image_ndarray-np.min(image_ndarray)
-        return (((temp_image)/(np.max(temp_image)))*max_value).astype(dtype)
+        return ((temp_image)/((np.max(temp_image))*max_value)).astype(dtype)
+    
+    @staticmethod
+    def normalize_std(image_ndarray):
+        """ 3D image"""
+        mean = np.mean(image_ndarray,dtype=np.float64)
+        std = np.std(image_ndarray,dtype=np.float64)
+        if (np.isnan(mean) or np.isnan(std) or np.isinf(mean) or np.isinf(std)):
+            max_var = np.max(image_ndarray!=np.inf)
+            target_image = np.where(target_image==np.inf,max_var,target_image)
+            mean = np.mean(target_image,dtype=np.float64)
+            std = np.std(target_image,dtype=np.float64)                        
+        return (image_ndarray-mean)/std
     
     """
     to_shape changes the image shape according to the shape recieved
