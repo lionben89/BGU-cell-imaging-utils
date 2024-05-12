@@ -81,9 +81,9 @@ class ImageUtils:
         std = np.std(image_ndarray,dtype=np.float64)
         if (np.isnan(mean) or np.isnan(std) or np.isinf(mean) or np.isinf(std)):
             max_var = np.max(image_ndarray!=np.inf)
-            target_image = np.where(target_image==np.inf,max_var,target_image)
-            mean = np.mean(target_image,dtype=np.float64)
-            std = np.std(target_image,dtype=np.float64)                        
+            image_ndarray = np.where(image_ndarray==np.inf,max_var,image_ndarray)
+            mean = np.mean(image_ndarray,dtype=np.float64)
+            std = np.std(image_ndarray,dtype=np.float64)                        
         return (image_ndarray-mean)/std
     
     """
