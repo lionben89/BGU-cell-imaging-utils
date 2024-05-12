@@ -9,7 +9,7 @@ requirements = [
     "matplotlib",
     "numpy",
     "tifffile",
-    "scikit-image>=0.15.0",
+    "scikit-image>=0.16.2",
     "aicsimageio==3.0.7",
     "quilt3",
     "bumpversion",
